@@ -1,8 +1,8 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const Client = require('./client/Client');
-const {token} = require('./config.json');
-const {Player} = require('discord-player');
+const { token } = require('./config.json');
+const { Player } = require('discord-player');
 
 const client = new Client();
 client.commands = new Discord.Collection();
@@ -63,9 +63,9 @@ client.on("messageCreate", async (message) => {
   if (!client.application?.owner) await client.application?.fetch();
 
   if (message.content === "!deploy" && message.author.id === client.application?.owner?.id) {
-      await message.guild.commands.set(client.commands).then(() => {
-        message.reply("Deployed!");
-      })
+    await message.guild.commands.set(client.commands).then(() => {
+      message.reply("Deployed!");
+    })
       .catch((err) => {
         message.reply("Could not deploy commands! Make sure the bot has the application.commands permission!");
         console.error(err)
@@ -77,7 +77,7 @@ client.on('interactionCreate', async interaction => {
   const command = client.commands.get(interaction.commandName.toLowerCase());
 
   try {
-    if (interaction.commandName == 'ban' || interaction.commandName == 'userinfo') {
+    if (interaction.commandName == 'userinfo') {
       command.execute(interaction, client);
     } else {
       command.execute(interaction, player);

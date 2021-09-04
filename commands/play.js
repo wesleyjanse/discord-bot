@@ -1,5 +1,5 @@
-const {GuildMember} = require('discord.js');
-const {QueryType} = require('discord-player');
+const { GuildMember } = require('discord.js');
+const { QueryType } = require('discord-player');
 
 module.exports = {
   name: 'play',
@@ -7,7 +7,7 @@ module.exports = {
   options: [
     {
       name: 'query',
-      type: 3, // 'STRING' Type
+      type: "STRING",
       description: 'The song you want to play',
       required: true,
     },
@@ -39,9 +39,9 @@ module.exports = {
           requestedBy: interaction.user,
           searchEngine: QueryType.AUTO,
         })
-        .catch(() => {});
+        .catch(() => { });
       if (!searchResult || !searchResult.tracks.length)
-        return void interaction.followUp({content: 'No results were found!'});
+        return void interaction.followUp({ content: 'No results were found!' });
 
       const queue = await player.createQueue(interaction.guild, {
         metadata: interaction.channel,
