@@ -1,3 +1,5 @@
 build:
   docker:
-    worker: Dockerfile
+    web: Dockerfile
+run:
+  worker: node index.js
